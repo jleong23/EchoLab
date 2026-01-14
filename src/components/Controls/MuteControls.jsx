@@ -9,34 +9,31 @@ export default function MuteControls({ hush, setHush }) {
   const toggle = (key) => setHush((prev) => ({ ...prev, [key]: !prev[key] }));
 
   return (
-    <div className="p-4 bg-gray-800/70 backdrop-blur-xl rounded-xl shadow-md w-full max-w-xl mx-auto">
-      <h3 className="text-xl font-semibold text-red-400 mb-4 text-center">
-        Hush (Mute)
-      </h3>
-
-      <div className="flex justify-around">
+    <div className="p-3 bg-gray-800/50 rounded-xl border border-gray-700/50 w-full">
+      <div className="flex justify-between items-center gap-2">
         {["drums", "bass", "arps"].map((key) => (
-          <div key={key} className="flex flex-col items-center gap-2">
-            {/* Instrument Name */}
-            <span className="capitalize text-lg font-semibold">{key}</span>
-
-            {/* Toggle Switch */}
-            <label className="relative inline-block w-14 h-6">
-              <input
-                type="checkbox"
-                checked={hush[key]}
-                onChange={() => toggle(key)}
-                className="sr-only peer"
+          <div
+            key={key}
+            onClick={() => toggle(key)}
+            className={`
+              flex-1 flex flex-col items-center justify-center py-2 px-1 rounded-lg cursor-pointer transition-all duration-200 border select-none
+              ${
+                hush[key]
+                  ? "bg-red-500/10 border-red-500/30 text-red-400"
+                  : "bg-gray-700/30 border-transparent text-gray-400 hover:bg-gray-700/50"
+              }
+            `}
+          >
+            <span className="text-xs font-bold uppercase tracking-wider mb-1">
+              {key}
+            </span>
+            <div
+              className={`w-8 h-4 rounded-full relative transition-colors ${hush[key] ? "bg-red-500" : "bg-gray-600"}`}
+            >
+              <div
+                className={`absolute top-0.5 left-0.5 w-3 h-3 bg-white rounded-full transition-transform ${hush[key] ? "translate-x-4" : "translate-x-0"}`}
               />
-              {/* Track */}
-              <span className="absolute inset-0 bg-gray-500/80 rounded-full peer-checked:bg-red-500 transition-colors"></span>
-              {/* Thumb */}
-              <span
-                className={`absolute left-0 top-0 w-6 h-6 bg-white rounded-full shadow transition-transform ${
-                  hush[key] ? "translate-x-8" : "translate-x-0"
-                }`}
-              ></span>
-            </label>
+            </div>
           </div>
         ))}
       </div>

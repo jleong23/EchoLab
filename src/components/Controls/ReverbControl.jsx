@@ -6,10 +6,12 @@
 
 export default function ReverbControl({ reverb = 0, setReverb }) {
   return (
-    <div className="flex flex-col gap-2 w-full max-w-xl mx-auto">
-      <label className="flex justify-between font-bold text-gray-200">
+    <div className="flex flex-col gap-1 w-full">
+      <label className="flex justify-between items-center text-gray-300 text-sm font-medium">
         <span>Reverb</span>
-        <span className="text-red-400 font-mono">{reverb.toFixed(2)}</span>
+        <span className="text-red-400 font-mono text-xs">
+          {reverb.toFixed(2)}
+        </span>
       </label>
 
       <input
@@ -19,8 +21,7 @@ export default function ReverbControl({ reverb = 0, setReverb }) {
         step="0.01"
         value={reverb}
         onChange={(e) => setReverb(parseFloat(e.target.value))}
-        className="w-full h-3 rounded-lg accent-red-600 cursor-pointer 
-                   bg-gradient-to-r from-red-500/50 to-red-700/50 shadow-inner"
+        className="w-full h-2 rounded-lg appearance-none cursor-pointer bg-gray-700 accent-red-500 hover:accent-red-400 transition-all"
       />
     </div>
   );

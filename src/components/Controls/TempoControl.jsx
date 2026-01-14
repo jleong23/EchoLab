@@ -23,10 +23,23 @@ export default function TempoControl({ tempo, setTempo }) {
   };
 
   return (
-    <div className="flex flex-col gap-2 w-full max-w-xl mx-auto">
-      <label className="flex justify-between font-bold text-gray-200">
+    <div className="flex flex-col gap-1 w-full">
+      <label className="flex justify-between items-end text-gray-300 text-sm font-medium mb-1">
         <span>Tempo</span>
-        <span className="text-red-400 font-mono">{tempo} BPM</span>
+        <div className="flex items-center gap-1">
+          <input
+            type="number"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            className="w-12 bg-gray-800 border border-gray-600 text-center rounded text-xs text-white p-0.5 focus:outline-none focus:border-red-500 transition-colors"
+          />
+          <button
+            onClick={applyTempo}
+            className="bg-gray-700 hover:bg-red-600 text-white rounded p-0.5 transition-colors"
+          >
+            <TiTick size={14} />
+          </button>
+        </div>
       </label>
 
       {/* Slider */}
@@ -36,25 +49,8 @@ export default function TempoControl({ tempo, setTempo }) {
         max="200"
         value={tempo}
         onChange={(e) => setTempo(Number(e.target.value))}
-        className="w-full h-3 rounded-lg accent-red-600 cursor-pointer 
-                   bg-gradient-to-r from-red-500/50 to-red-700/50 shadow-inner"
+        className="w-full h-2 rounded-lg appearance-none cursor-pointer bg-gray-700 accent-red-500 hover:accent-red-400 transition-all"
       />
-
-      {/* Input box with apply button */}
-      <div className="flex items-center gap-2 justify-center mt-1">
-        <input
-          type="number"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          className="w-20 bg-gray-800 border border-gray-700 text-center rounded-md text-white p-1 shadow-inner focus:outline-none focus:ring-2 focus:ring-red-500"
-        />
-        <button
-          onClick={applyTempo}
-          className="bg-red-600 hover:bg-red-700 text-white rounded-md p-2 shadow-md transition-all duration-200 active:scale-95"
-        >
-          <TiTick size={20} />
-        </button>
-      </div>
     </div>
   );
 }

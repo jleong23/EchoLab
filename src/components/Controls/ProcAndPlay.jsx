@@ -1,21 +1,25 @@
 export default function ProcAndPlay({ onProcPlay, isPlaying }) {
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center w-full">
       {/* Proc & Play Button */}
       <button
         onClick={onProcPlay}
         className={`
-          px-8 py-3 rounded-2xl font-accent text-lg font-bold 
-          transition-all duration-300 shadow-2xl
+          relative w-full md:w-auto px-6 py-3 rounded-xl font-accent text-sm md:text-base font-bold tracking-wider uppercase
+          transition-all duration-300 shadow-lg transform active:scale-[0.98]
           ${
             isPlaying
-              ? "bg-red-500 shadow-red-400/50 animate-pulse"
-              : "bg-red-600 hover:bg-red-700"
+              ? "bg-red-500/20 text-red-400 border border-red-500/50 shadow-red-900/20"
+              : "bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white shadow-red-900/30 border border-transparent"
           }
-          text-white
         `}
       >
-        PROC & PLAY
+        <span className="flex items-center justify-center gap-2">
+          {isPlaying && (
+            <span className="w-2 h-2 rounded-full bg-red-500 animate-ping" />
+          )}
+          PROC & PLAY
+        </span>
       </button>
     </div>
   );
