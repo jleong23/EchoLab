@@ -28,15 +28,17 @@ export default function PreProessTextArea({
   }, [show]);
 
   return (
-    <div className="mt-4">
+    <div className="w-full max-w-7xl mx-auto mt-6 px-4 md:px-6">
       {/* Toggle show Button */}
       <button
         onClick={() => setShow(!show)}
-        className="mb-3 px-6 py-3 bg-red-600/80 backdrop-blur-sm text-white font-accent font-semibold rounded-2xl shadow-md hover:bg-red-600/100 focus:outline-none flex items-center gap-3 transition-all duration-300"
+        className="w-full flex items-center justify-between px-6 py-4 bg-gray-900/95 backdrop-blur-md border border-gray-800 rounded-2xl shadow-xl text-gray-200 hover:bg-gray-800 transition-all group mb-4"
       >
-        <span>{show ? "Hide Editor Panel" : "Show Editor Panel"}</span>
+        <span className="font-bold text-sm uppercase tracking-wider">
+          {show ? "Hide Editor Panel" : "Show Editor Panel"}
+        </span>
         <FiChevronDown
-          className={`w-6 h-6 transition-transform duration-300 ${
+          className={`w-5 h-5 text-gray-400 group-hover:text-red-400 transition-transform duration-300 ${
             show ? "rotate-180" : "rotate-0"
           }`}
         />
@@ -46,32 +48,37 @@ export default function PreProessTextArea({
       <div
         ref={containerRef}
         style={{ maxHeight }}
-        className="overflow-hidden transition-all duration-300 "
+        className="overflow-hidden transition-all duration-500 ease-in-out"
       >
-        <div className="grid md:grid-cols-2 gap-4 mt-4 items-start">
+        <div className="grid md:grid-cols-2 gap-6 pb-2">
           {/* Text Area Input */}
-          <div className="flex flex-col">
-            <label className="block font-accent font-semibold text-red-500 mb-2">
-              Text to preprocess:
+          <div className="flex flex-col min-w-0">
+            <label className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3 ml-1">
+              Input Code
             </label>
-            <textarea
-              ref={procRef}
-              value={procValue}
-              onChange={(e) => onProcChange(e.target.value)}
-              rows={15}
-              className="w-full bg-gray-800 text-white border border-gray-700 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-red-600 resize-none h-96"
-            />
+            <div className="relative w-full bg-gray-900/95 backdrop-blur-md border border-gray-800 rounded-2xl shadow-xl overflow-hidden p-1">
+              <textarea
+                ref={procRef}
+                value={procValue}
+                onChange={(e) => onProcChange(e.target.value)}
+                className="w-full h-64 md:h-96 bg-gray-950 text-gray-300 p-4 focus:outline-none resize-none font-mono text-sm rounded-xl border-none placeholder-gray-700"
+                placeholder="// Enter your code here..."
+                spellCheck="false"
+              />
+            </div>
           </div>
 
           {/* Editor output */}
-          <div className="flex flex-col">
-            <label className="block font-accent font-semibold text-red-500 mb-2">
-              Output
+          <div className="flex flex-col min-w-0">
+            <label className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3 ml-1">
+              Console Output
             </label>
-            <div
-              ref={editorRootRef}
-              className="border border-gray-700 rounded-2xl overflow-y-auto h-96 p-4 scrollbar-thin scrollbar-thumb-red-500/60 scrollbar-track-gray-900/50"
-            />
+            <div className="relative w-full bg-gray-900/95 backdrop-blur-md border border-gray-800 rounded-2xl shadow-xl overflow-hidden p-1">
+              <div
+                ref={editorRootRef}
+                className="w-full h-64 md:h-96 bg-gray-950 text-gray-300 p-4 overflow-y-auto font-mono text-sm rounded-xl scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent"
+              />
+            </div>
             <div ref={outputRootRef} />
           </div>
         </div>
