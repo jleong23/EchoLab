@@ -13,12 +13,8 @@ export default function SelectorPanel({
   setPattern,
 }) {
   return (
-    <div className="mt-4 p-5 bg-gray-800/70 rounded-2xl shadow-panel border border-gray-600 backdrop-blur-xl">
-      <h3 className="text-lg font-accent text-red-400 mb-4 tracking-wide uppercase">
-        Drum Controls
-      </h3>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div className="w-full max-w-md mx-auto mt-4 p-4 bg-gray-900/95 backdrop-blur-md border border-gray-800 rounded-2xl shadow-xl">
+      <div className="grid grid-cols-2 gap-4">
         <DrumSoundSelector drumBank={drumBank} setDrumBank={setDrumBank} />
         <DrumPatternSelector pattern={pattern} setPattern={setPattern} />
       </div>
