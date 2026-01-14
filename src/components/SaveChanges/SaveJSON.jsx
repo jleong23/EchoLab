@@ -8,25 +8,31 @@ import { FaSave } from "react-icons/fa";
 import { CiSaveDown2 } from "react-icons/ci";
 export default function SaveJSON({ saveToJson, loadFromJson, statusMessage }) {
   return (
-    <div className="flex flex-col items-start gap-2">
-      <div className="flex gap-3">
+    <div className="w-full max-w-md mx-auto mt-4 p-4 bg-gray-900/95 backdrop-blur-md border border-gray-800 rounded-2xl shadow-xl">
+      <div className="flex gap-4">
         {/* Save Button */}
         <button
           onClick={saveToJson}
-          className="bg-red-600 hover:bg-red-500 text-white px-4 py-2 rounded-lg shadow-sm transition-colors duration-150"
+          className="flex-1 flex items-center justify-center gap-2 bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-200 px-4 py-3 rounded-xl shadow-md transition-all duration-200 active:scale-95 group"
         >
-          <span className="flex gap-2">
+          <span className="font-bold text-sm uppercase tracking-wider">
             Save
-            <FaSave size={25} />
           </span>
+          <FaSave
+            className="text-red-500 group-hover:text-red-400 transition-colors"
+            size={16}
+          />
         </button>
 
-        <label className="bg-red-600 hover:bg-red-500 text-white px-4 py-2 rounded-lg shadow-sm cursor-pointer transition-colors duration-150">
+        <label className="flex-1 flex items-center justify-center gap-2 bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-200 px-4 py-3 rounded-xl shadow-md cursor-pointer transition-all duration-200 active:scale-95 group select-none">
           {/* Load Button */}
-          <span className="flex gap-2">
+          <span className="font-bold text-sm uppercase tracking-wider">
             Load
-            <CiSaveDown2 size={25} />
           </span>
+          <CiSaveDown2
+            className="text-red-500 group-hover:text-red-400 transition-colors"
+            size={20}
+          />
 
           <input
             type="file"
@@ -43,14 +49,17 @@ export default function SaveJSON({ saveToJson, loadFromJson, statusMessage }) {
 
       {/* Status Message if Succesfully load / save */}
       {statusMessage && (
-        <div className="fixed bottom-6 left-6 z-50 animate-fadeInOut">
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 animate-fadeInOut w-max max-w-[90vw]">
           <div
-            className={`px-3 py-2 rounded-xl shadow-2xl text-lg font-medium text-white backdrop-blur-xl transition-all duration-500 ${
+            className={`px-4 py-2 rounded-full shadow-2xl text-sm font-bold tracking-wide text-white backdrop-blur-xl border transition-all duration-300 flex items-center gap-2 ${
               statusMessage.startsWith("Succesfully")
-                ? "bg-green-500/80 shadow-green-400/70"
-                : "bg-red-500/80 shadow-red-400/70"
+                ? "bg-green-500/20 border-green-500/50 text-green-200 shadow-green-900/20"
+                : "bg-red-500/20 border-red-500/50 text-red-200 shadow-red-900/20"
             }`}
           >
+            <span
+              className={`w-2 h-2 rounded-full ${statusMessage.startsWith("Succesfully") ? "bg-green-400 animate-pulse" : "bg-red-400"}`}
+            ></span>
             {statusMessage}
           </div>
         </div>
