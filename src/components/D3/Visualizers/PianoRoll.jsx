@@ -22,7 +22,7 @@ export default function PianoRollCanvas({ canvasRef }) {
         localRef.current = el;
         if (canvasRef) canvasRef.current = el;
       }}
-      className="h-96 w-full border rounded bg-black mt-3"
+      className="w-full h-64 md:h-96 bg-gray-950 rounded-xl"
     />
   );
 }

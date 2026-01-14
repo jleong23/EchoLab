@@ -46,9 +46,9 @@ export default function LineChart({ data }) {
     lineGrad
       .selectAll("stop")
       .data([
-        { offset: "0%", color: "#ff7e5f", opacity: 0.95 },
-        { offset: "60%", color: "#feb47b", opacity: 0.95 },
-        { offset: "100%", color: "#ffd89b", opacity: 0.85 },
+        { offset: "0%", color: "#f87171", opacity: 0.9 },
+        { offset: "50%", color: "#ef4444", opacity: 0.8 },
+        { offset: "100%", color: "#b91c1c", opacity: 0.2 },
       ])
       .join("stop")
       .attr("offset", (d) => d.offset)
@@ -72,5 +72,10 @@ export default function LineChart({ data }) {
       .attr("d", lineGenerator);
   }, [data, gradientId]);
 
-  return <svg ref={svgRef} className="w-full h-40" />;
+  return (
+    <svg
+      ref={svgRef}
+      className="w-full h-32 md:h-40 bg-gray-800/20 rounded-xl  "
+    />
+  );
 }
