@@ -1,33 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@400;500;600;700&family=Orbitron:wght@400;500;700&family=Audiowide&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&family=Orbitron:wght@400;500;700&family=Audiowide&display=swap");
+
+button {
+  all: unset;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* ============================= */
+/* THEME TOKENS (RGB VALUES ONLY) */
+/* ============================= */
+
+/* Theme Colors */
+:root {
+  --text: 255, 255, 255;
+  --muted: 200, 200, 200;
+  --panel: 30, 30, 30;
+  --panelInner: 40, 40, 40;
+  --panelMuted: 50, 50, 50;
+  --panelBorder: 100, 100, 100;
+  --danger: 255, 59, 48;
+  --dangerSoft: 255, 59, 48;
+  --success: 52, 211, 153;
+}
+
+.light {
+  --text: 30, 30, 30;
+  --muted: 80, 80, 80;
+  --panel: 245, 245, 245;
+  --panelInner: 255, 255, 255; /* white input background */
+  --panelBorder: 200, 200, 200;
+  --danger: 220, 38, 38; /* red-700-ish for light */
+  --success: 5, 150, 105; /* green-600-ish */
+}
+
+/* ============================= */
+/* BASE */
+/* ============================= */
 
 body {
-  @apply bg-gray-900 text-white antialiased;
+  background-color: rgba(var(--panel), 1);
+  color: rgba(var(--text), 1);
+  -webkit-font-smoothing: antialiased;
+  font-family: theme("fontFamily.body");
 }
 
 code {
-  font-family:
-    source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-family: "Fira Code", monospace;
 }
 
-@keyframes fadeInOut {
-  0% {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  10%,
-  90% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-}
+/* ============================= */
+/* UI PRIMITIVES */
+/* ============================= */
 
-.animate-fadeInOut {
-  animation: fadeInOut 4s ease-in-out forwards;
+.panel {
+  background-color: rgba(var(--panel), 0.95);
+  backdrop-filter: blur(1rem);
+  border: 1px solid rgba(var(--panel), 0.1);
+  border-radius: 1rem;
+  box-shadow: 0 8px 24px rgba(var(--panel), 0.4);
 }

@@ -24,18 +24,18 @@ export default function TempoControl({ tempo, setTempo }) {
 
   return (
     <div className="flex flex-col gap-1 w-full">
-      <label className="flex justify-between items-end text-gray-300 text-sm font-medium mb-1">
+      <label className="flex justify-between items-end text-muted text-sm font-medium mb-1">
         <span>Tempo</span>
         <div className="flex items-center gap-1">
           <input
             type="number"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
-            className="w-12 bg-gray-800 border border-gray-600 text-center rounded text-xs text-white p-0.5 focus:outline-none focus:border-red-500 transition-colors"
+            className="w-12 bg-panelInner border border-panelBorder text-center rounded text-xs text-text p-0.5 focus:outline-none focus:border-danger transition-colors"
           />
           <button
             onClick={applyTempo}
-            className="bg-gray-700 hover:bg-red-600 text-white rounded p-0.5 transition-colors"
+            className="bg-panelInner border border-panelBorder hover:bg-danger hover:border-danger text-text hover:text-white rounded p-0.5 transition-colors"
           >
             <TiTick size={14} />
           </button>
@@ -49,7 +49,7 @@ export default function TempoControl({ tempo, setTempo }) {
         max="200"
         value={tempo}
         onChange={(e) => setTempo(Number(e.target.value))}
-        className="w-full h-2 rounded-lg appearance-none cursor-pointer bg-gray-700 accent-red-500 hover:accent-red-400 transition-all"
+        className="w-full h-2 rounded-lg appearance-none cursor-pointer bg-panelMuted accent-danger hover:accent-dangerSoft transition-all"
       />
     </div>
   );

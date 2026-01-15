@@ -35,7 +35,7 @@ export default function VolumeSlider({ volume, setVolume }) {
 
   return (
     <div className="flex flex-col gap-1 w-full">
-      <div className="flex justify-between items-center text-gray-300 text-sm font-medium">
+      <div className="flex justify-between items-center text-muted text-sm font-medium">
         <span>Volume</span>
         <span className="text-red-400 font-mono text-xs">
           {muted ? "0.00" : volume.toFixed(2)}
@@ -49,8 +49,8 @@ export default function VolumeSlider({ volume, setVolume }) {
             p-2 rounded-lg transition-colors duration-200 flex-shrink-0
             ${
               muted
-                ? "bg-red-500/20 text-red-400 hover:bg-red-500/30"
-                : "bg-gray-700 text-gray-300 hover:bg-gray-600 hover:text-white"
+                ? "bg-danger/20 text-dangerSoft hover:bg-danger/30"
+                : "bg-panelMuted text-muted hover:bg-panelBorder hover:text-text"
             }
           `}
           aria-label={muted ? "Unmute" : "Mute"}
@@ -70,7 +70,7 @@ export default function VolumeSlider({ volume, setVolume }) {
             setMuted(val === 0);
             if (val > 0) setPrevVolume(val);
           }}
-          className="w-full h-2 rounded-lg appearance-none cursor-pointer bg-gray-700 accent-red-500 hover:accent-red-400 transition-all"
+          className="w-full h-2 rounded-lg appearance-none cursor-pointer bg-panelMuted accent-danger hover:accent-dangerSoft transition-all"
         />
       </div>
     </div>
