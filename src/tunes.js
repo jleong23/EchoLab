@@ -1,8 +1,18 @@
-export const stranger_tune = `setcps(140/60/4)
+export const stranger_tune = `/* ============================
+   SAMPLE LIBRARIES
+   Purpose: Load all external samples used in this set
+   Do not edit unless you know what samples are required
+   ============================ */
 
 samples('github:algorave-dave/samples')
 samples('https://raw.githubusercontent.com/tidalcycles/Dirt-Samples/master/strudel.json')
 samples('https://raw.githubusercontent.com/Mittans/tidal-drum-machines/main/machines/tidal-drum-machines.json')
+
+/* ============================
+   MUSICAL BUILDING BLOCKS
+   Purpose: Rhythmic, melodic, and gain patterns
+   These define the sound and groove of the track
+   ============================ */
 
 const gain_patterns = [
   "2",
@@ -35,9 +45,25 @@ const arpeggiator2 = [
 "{d5 bb4 g4 d4 bb3 g3 d4 bb3 eb3 d3 bb2 eb2}%16",
 ]
 
-
+/* ============================
+   INTERNAL SELECTORS
+   Purpose: Indexes used to pick patterns above
+   These are controlled indirectly during performance
+   ============================ */
 const pattern = 0
 const bass = 0
+
+/* =========================================================
+   PERFORMANCE / ARRANGEMENT STARTS HERE
+   ---------------------------------------------------------
+   This is the main interaction zone for the user.
+   You are expected to tweak values like:
+   - <volume>
+   - <reverb>
+   - pattern / bass indices
+   - mute / unmute parts
+   - etc.
+   ========================================================= */
 
 <p2_Radio>bassline:
 note(pick(basslines, bass))
@@ -95,5 +121,6 @@ stack(
 //Remixed and reproduced from Algorave Dave's code found here: https://www.youtube.com/watch?v=ZCcpWzhekEY
 // all(x => x.gain(mouseX.range(0,1)))
 all(x => x.log())
+setcps(140/60/4)
 
 // @version 1.2`;

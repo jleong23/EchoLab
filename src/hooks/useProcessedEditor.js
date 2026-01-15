@@ -23,7 +23,7 @@ export function buildAndEvaluate(
     drumBank,
     tempo,
   },
-  opts = { evaluateIfPlaying: true }
+  opts = { evaluateIfPlaying: true, skipTempo: false }
 ) {
   if (!editor) return;
 
@@ -45,11 +45,14 @@ export function buildAndEvaluate(
   // 3. Set the chosen drum sound bank.
   replaced = changeDrumBank(replaced, drumBank);
 
-  // 4. Apply the current tempo to the code.
-  const replacedTempo = applyTempo(replaced, tempo);
+  // 4. Apply the current tempo to the code (unless skipped).
+  let finalCode = replaced;
+  if (!opts.skipTempo) {
+    finalCode = applyTempo(replaced, tempo);
+  }
 
   // 5. Update the editor's content with the newly constructed code.
-  setCode(replacedTempo);
+  setCode(finalCode);
 
   // 6. If music is already playing, re-evaluate the code to apply changes immediately.
   if (opts.evaluateIfPlaying && getReplState().started) {

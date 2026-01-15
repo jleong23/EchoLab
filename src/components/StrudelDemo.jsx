@@ -124,11 +124,40 @@ export default function StrudelDemo() {
     };
   }, []);
 
-  // Effects to rebuild and evaluate Strudel code on state changes
+  // Effect 1: Handle manual code changes (Text Area)
   useEffect(() => {
     if (!editor) return;
 
     // Use a timeout to avoid triggering updates while the user is typing
+    const timer = setTimeout(() => {
+      // Process the code to remove tags (like <p2_Radio>) but skip applying the tempo slider
+      // so that manual changes to setcps(...) are respected.
+      buildAndEvaluate(
+        {
+          editor,
+          setCode,
+          evaluate,
+          getReplState,
+          procValue,
+          hush,
+          reverb,
+          volume,
+          pattern,
+          drumBank,
+          tempo,
+          syncMuteStates,
+        },
+        { evaluateIfPlaying: true, skipTempo: true }
+      );
+    }, 150);
+
+    return () => clearTimeout(timer);
+  }, [procValue, editor, setCode, evaluate, syncMuteStates]);
+
+  // Effect 2: Handle Control changes (Sliders, Toggles)
+  useEffect(() => {
+    if (!editor) return;
+
     const timer = setTimeout(() => {
       buildAndEvaluate(
         {
@@ -154,18 +183,20 @@ export default function StrudelDemo() {
 
     return () => clearTimeout(timer); // cleanup timeout if dependencies change
   }, [
-    editor,
-    setCode,
-    evaluate,
-    getReplState,
-    procValue,
+    // Only trigger on control changes
     hush,
     reverb,
     volume,
     pattern,
     drumBank,
     tempo,
+    // Dependencies
+    editor,
+    setCode,
+    evaluate,
+    getReplState,
     syncMuteStates,
+    // procValue is intentionally excluded to prevent overwriting manual edits
   ]);
 
   /**

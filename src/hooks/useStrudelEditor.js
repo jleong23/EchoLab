@@ -28,6 +28,10 @@ export default function useStrudelEditor({
   useEffect(() => {
     if (!editorRootRef.current) return; // if editor div not ready, stop
 
+    // Clear the container before initializing to prevent duplicates (React Strict Mode)
+    editorRootRef.current.innerHTML = "";
+    if (outputRootRef?.current) outputRootRef.current.innerHTML = "";
+
     // Canvas for drawing piano roll
     const canvas = canvasRef.current;
     const context = canvas ? canvas.getContext("2d") : null;
@@ -75,12 +79,14 @@ export default function useStrudelEditor({
 
     return () => {
       editorRef.current?.stop?.();
+      editorRef.current?.view?.destroy?.(); // Attempt to properly destroy CodeMirror instance
       // clear editor DOM
       if (editorRootRef.current) editorRootRef.current.innerHTML = "";
+      if (outputRootRef?.current) outputRootRef.current.innerHTML = "";
       editorRef.current = null;
       setReady(false);
     };
-  }, [editorRootRef, canvasRef, outputRootRef, initialCode]);
+  }, [editorRootRef, canvasRef, outputRootRef]);
 
   // Helper Functions
   const evaluate = useCallback(() => editorRef.current?.evaluate(), []); // Play

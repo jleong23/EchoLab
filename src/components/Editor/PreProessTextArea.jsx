@@ -14,7 +14,7 @@ export default function PreProessTextArea({
   editorRootRef,
   outputRootRef,
 }) {
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
   const containerRef = useRef(null); // Ref to the collapsible div
   const [maxHeight, setMaxHeight] = useState("0px"); // for smooth collapse/expand
 
@@ -71,7 +71,7 @@ export default function PreProessTextArea({
           {/* Editor output */}
           <div className="flex flex-col min-w-0">
             <label className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3 ml-1">
-              Console Output
+              Processed Code
             </label>
             <div className="relative w-full bg-gray-900/95 backdrop-blur-md border border-gray-800 rounded-2xl shadow-xl overflow-hidden p-1">
               <div
