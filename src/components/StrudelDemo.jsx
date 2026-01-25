@@ -111,6 +111,7 @@ export default function StrudelDemo() {
   // Control changes (sliders, toggles)
   useEffect(() => {
     if (!editor) return;
+
     const timer = setTimeout(() => {
       buildAndEvaluate(
         {
@@ -129,20 +130,21 @@ export default function StrudelDemo() {
         },
         { evaluateIfPlaying: true },
       );
-      syncMuteStates();
     }, 150);
+
     return () => clearTimeout(timer);
   }, [
+    editor,
+    setCode,
+    evaluate,
+    getReplState,
+    procValue,
     hush,
     reverb,
     volume,
     pattern,
     drumBank,
     tempo,
-    editor,
-    setCode,
-    evaluate,
-    getReplState,
     syncMuteStates,
   ]);
 

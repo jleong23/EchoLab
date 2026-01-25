@@ -14,7 +14,7 @@ export default function VolumeSlider({ volume, setVolume }) {
   useEffect(() => {
     if (volume === 0 && !muted) setMuted(true);
     if (volume > 0 && muted) setMuted(false);
-  }, [volume]);
+  }, [volume, muted]);
 
   const toggleMute = () => {
     if (!muted) {

@@ -60,7 +60,7 @@ export default function useStrudelEditor({
           import("@strudel/draw"),
           import("@strudel/mini"),
           import("@strudel/tonal"),
-          import("@strudel/webaudio")
+          import("@strudel/webaudio"),
         );
 
         // Use await to wait for everything to load ( modules + sounds )
@@ -94,7 +94,7 @@ export default function useStrudelEditor({
   const setCode = useCallback((code) => editorRef.current?.setCode(code), []); // Set the text in the editor
   const getReplState = useCallback(
     () => editorRef.current?.repl?.state ?? {},
-    []
+    [],
   ); // Get the current REPL (interpreter) state - whether it's running
 
   return {
