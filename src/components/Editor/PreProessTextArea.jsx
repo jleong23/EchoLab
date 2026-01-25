@@ -51,7 +51,7 @@ export default function PreProessTextArea({
         <button
           onClick={() => setShow(!show)}
           className={`
-            w-full flex items-center justify-between
+            w-full flex items-center justify-center gap-2
             px-6 py-4 rounded-xl font-accent text-sm md:text-base
             font-bold tracking-wider uppercase transition-all duration-300
             shadow-lg active:scale-[0.98]

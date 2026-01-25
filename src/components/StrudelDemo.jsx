@@ -102,7 +102,7 @@ export default function StrudelDemo() {
           tempo,
           syncMuteStates,
         },
-        { evaluateIfPlaying: true, skipTempo: true }
+        { evaluateIfPlaying: true, skipTempo: true },
       );
     }, 150);
     return () => clearTimeout(timer);
@@ -127,7 +127,7 @@ export default function StrudelDemo() {
           tempo,
           syncMuteStates,
         },
-        { evaluateIfPlaying: true }
+        { evaluateIfPlaying: true },
       );
       syncMuteStates();
     }, 150);
