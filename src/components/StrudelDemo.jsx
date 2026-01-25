@@ -196,8 +196,8 @@ export default function StrudelDemo() {
         />
       </div>
 
+      <Canvas canvasRef={canvasRef} d3Data={d3Data} />
       <div className="mt-6 space-y-6">
-        <Canvas canvasRef={canvasRef} d3Data={d3Data} />
         <PreProessTextArea
           procValue={procValue}
           onProcChange={setProcValue}

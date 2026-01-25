@@ -45,31 +45,29 @@ export default function PreProessTextArea({
   }, [procRef, editorRootRef, outputRootRef]);
 
   return (
-    <div className="w-full max-w-7xl mx-auto mt-6 px-4 md:px-6">
+    <div className="w-full max-w-7xl mx-auto">
       {/* Toggle show button */}
-      <div className="w-full max-w-md mx-auto">
-        <button
-          onClick={() => setShow(!show)}
-          className={`
-            w-full flex items-center justify-center gap-2
-            px-6 py-4 rounded-xl font-accent text-sm md:text-base
-            font-bold tracking-wider uppercase transition-all duration-300
-            shadow-lg active:scale-[0.98]
-            bg-blue-900 hover:bg-red-800 text-white
-            border border-red-700
-            group mb-4
-          `}
-        >
-          <span className="font-bold text-sm uppercase tracking-wider">
-            {show ? "Hide Editor Panel" : "Show Editor Panel"}
-          </span>
-          <FiChevronDown
-            className={`w-5 h-5 text-white transition-transform duration-300 ${
-              show ? "rotate-180" : "rotate-0"
-            }`}
-          />
-        </button>
-      </div>
+      <button
+        onClick={() => setShow(!show)}
+        className={`
+          w-full max-w-md mx-auto flex items-center justify-center gap-2
+          px-6 py-4 rounded-xl font-accent text-sm md:text-base
+          font-bold tracking-wider uppercase transition-all duration-300
+          shadow-lg active:scale-[0.98]
+          bg-blue-900 hover:bg-red-800 text-white
+          border border-red-700
+          group mb-4
+        `}
+      >
+        <span className="font-bold text-sm uppercase tracking-wider">
+          {show ? "Hide Editor Panel" : "Show Editor Panel"}
+        </span>
+        <FiChevronDown
+          className={`w-5 h-5 text-white transition-transform duration-300 ${
+            show ? "rotate-180" : "rotate-0"
+          }`}
+        />
+      </button>
 
       {/* Collapsible panel */}
       <div
@@ -77,7 +75,7 @@ export default function PreProessTextArea({
         style={{ maxHeight }}
         className="overflow-hidden transition-all duration-500 ease-in-out"
       >
-        <div className="grid md:grid-cols-2 gap-6 pb-2">
+        <div className="grid md:grid-cols-2 gap-6 pb-2 px-4 md:px-6">
           {/* Text Area Input */}
           <div className="flex flex-col min-w-0">
             <label className="text-xs font-bold text-muted uppercase tracking-wider mb-3 ml-1">
